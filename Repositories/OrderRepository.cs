@@ -6,8 +6,18 @@ namespace PizzaDeliveryApp.Repositories;
 
 public class OrderRepository : BaseRepository<Order>
 {
+
     public OrderRepository(AppDbContext dbContext) : base(dbContext)
     {
+    }
+    
+    public override List<Order> FindAll()
+    {
+        return DbContext.Orders!
+            .Include("OrderLines")
+            .Include("OrderLines.Item")
+            .Include("User")
+            .ToList();
     }
 
     public override Order Update(Order obj)

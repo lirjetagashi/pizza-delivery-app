@@ -20,7 +20,12 @@ public class OrderService
         _orderLineRepository = orderLineRepository;
         _appDbContext = appDbContext;
     }
-
+    
+    public List<Order> FindAllOrders()
+    {
+        return _orderRepository.FindAll();
+    }
+    
     public Order Open()
     {
         var order = new Order

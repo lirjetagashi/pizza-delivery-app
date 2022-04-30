@@ -16,7 +16,14 @@ public class OrderController : ControllerBase
     {
         _orderService = orderService;
     }
-
+    
+    [HttpGet]
+    [Route("orders")]
+    public List<Order> FindAllOrders()
+    {
+        return _orderService.FindAllOrders();
+    }
+    
     [HttpPost]
     [Route("open")]
     public Order Open()

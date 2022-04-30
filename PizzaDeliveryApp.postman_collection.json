@@ -1,0 +1,235 @@
+{
+	"info": {
+		"_postman_id": "e8fa31bc-c526-420a-8fea-b17fa436fea2",
+		"name": "PizzaDeliveryApp",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Open Order",
+			"protocolProfileBehavior": {
+				"strictSSL": false
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7217/order/open",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7217",
+					"path": [
+						"order",
+						"open"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Line Order",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"item\": {\n        \"id\": 1,\n        \"name\": \"Medium Chicken Special Pizza\",\n        \"price\": 13.99\n        \n    },\n    \"quantity\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7217/order/1/add-line",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7217",
+					"path": [
+						"order",
+						"1",
+						"add-line"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Line Order",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"item\": {\n        \"name\": \"Medium Chicken Special Pizza\",\n        \"price\": 13.99,\n        \"toppings\": [],\n        \"id\": 1\n    },\n    \"quantity\": 3,\n    \"id\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7217/order/1/set-line",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7217",
+					"path": [
+						"order",
+						"1",
+						"set-line"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remove Line Order",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7217/order/1/remove-line",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7217",
+					"path": [
+						"order",
+						"1",
+						"remove-line"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Complete Order",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"shippingAddress\": {\n        \"line1\": \"123 King St\",\n        \"line2\": \"string\",\n        \"postalCode\": \"N1L 2L1\",\n        \"city\": \"Waterloo\",\n        \"province\": \"ON\",\n        \"country\": \"Canada\"\n    },\n    \"user\": {\n        \"id\": 1,\n        \"firstName\": \"Bob\",\n        \"lastName\": \"Smith\",\n        \"email\": \"bob.smith@gmail.com\",\n        \"phoneNumber\": \"1231231234\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7217/order/1/complete",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7217",
+					"path": [
+						"order",
+						"1",
+						"complete"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Prepare Order",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7217/order/1/prepare",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7217",
+					"path": [
+						"order",
+						"1",
+						"prepare"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Out For Delivery Order",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7217/order/1/out-for-delivery",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7217",
+					"path": [
+						"order",
+						"1",
+						"out-for-delivery"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delivered Order",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7217/order/1/delivered",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7217",
+					"path": [
+						"order",
+						"1",
+						"delivered"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find All Orders",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7217/order/orders",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7217",
+					"path": [
+						"order",
+						"orders"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
