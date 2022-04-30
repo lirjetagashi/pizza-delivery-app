@@ -1,46 +1,47 @@
 using Microsoft.EntityFrameworkCore;
 using PizzaDeliveryApp.Entities;
+using PizzaDeliveryApp.Execptions;
 
 namespace PizzaDeliveryApp.Repositories;
 
 public abstract class BaseRepository<T> where T : BaseEntity
 {
-    private readonly DbContext _dbContext;
+    protected readonly AppDbContext DbContext;
 
-    protected BaseRepository(DbContext dbContext)
+    protected BaseRepository(AppDbContext dbContext)
     {
-        _dbContext = dbContext;
+        DbContext = dbContext;
     }
 
-    public T Create(T obj)
+    public virtual T Create(T obj)
     {
-        var entity = _dbContext.Add(obj);
-        _dbContext.SaveChanges();
+        var entity = DbContext.Add(obj);
+        DbContext.SaveChanges();
 
         return entity.Entity;
     }
 
-    public void Delete(T obj)
+    public virtual void Delete(T obj)
     {
-        _dbContext.Remove(obj);
-        _dbContext.SaveChanges();
+        DbContext.Remove(obj);
+        DbContext.SaveChanges();
     }
 
-    public T Update(T obj)
+    public virtual T Update(T obj)
     {
-        var entity = _dbContext.Update(obj);
-        _dbContext.SaveChanges();
+        DbContext.Update(obj);
+        DbContext.SaveChanges();
 
-        return entity.Entity;
+        return FindById(obj.Id);
     }
 
-    public IEnumerable<T> FindAll()
+    public virtual IEnumerable<T> FindAll()
     {
-        return _dbContext.Set<T>().ToList();
+        return DbContext.Set<T>().ToList();
     }
 
-    public T? FindById(long id)
+    public virtual T FindById(long id)
     {
-        return _dbContext.Set<T>().FirstOrDefault(x => x.Id == id);
+        return DbContext.Set<T>().AsNoTracking().FirstOrDefault(x => x.Id == id) ?? throw new EntityNotFoundException("No Entity found with Id: " + id);
     }
 }

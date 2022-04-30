@@ -1,4 +1,6 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace PizzaDeliveryApp.Entities;
 
@@ -10,7 +12,11 @@ public class Order : BaseEntity
 
     public Address? ShippingAddress { get; set; }
 
+    [ForeignKey("UserId")]
     public User? User { get; set; }
+    
+    [JsonIgnore]
+    public long? UserId { get; set; }
     
     [Required]
     public Status Status { get; set; }

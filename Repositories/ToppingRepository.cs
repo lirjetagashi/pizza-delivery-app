@@ -5,7 +5,7 @@ namespace PizzaDeliveryApp.Repositories;
 
 public class ToppingRepository : BaseRepository<Topping>
 {
-    public ToppingRepository(DbContext dbContext) : base(dbContext)
+    public ToppingRepository(AppDbContext dbContext) : base(dbContext)
     {
     }
 }

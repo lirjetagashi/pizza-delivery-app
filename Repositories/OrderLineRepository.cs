@@ -5,7 +5,7 @@ namespace PizzaDeliveryApp.Repositories;
 
 public class OrderLineRepository : BaseRepository<OrderLine>
 {
-    public OrderLineRepository(DbContext dbContext) : base(dbContext)
+    public OrderLineRepository(AppDbContext dbContext) : base(dbContext)
     {
     }
 }

@@ -10,9 +10,15 @@ public class OrderService
 {
     private readonly OrderRepository _orderRepository;
 
-    public OrderService(OrderRepository orderRepository)
+    private readonly OrderLineRepository _orderLineRepository;
+
+    private readonly AppDbContext _appDbContext;
+
+    public OrderService(OrderRepository orderRepository, OrderLineRepository orderLineRepository, AppDbContext appDbContext)
     {
         _orderRepository = orderRepository;
+        _orderLineRepository = orderLineRepository;
+        _appDbContext = appDbContext;
     }
 
     public Order Open()
@@ -50,17 +56,19 @@ public class OrderService
     
     public Order DeleteLine(long id, OrderLine orderLine)
     {
+        using var transaction = _appDbContext.Database.BeginTransaction();
+        _orderLineRepository.Delete(orderLine);
         var order = FindById(id);
-
-        order.OrderLines.Remove(orderLine);
         order.Total = order.OrderLines.Sum(x => x.Item.Price * x.Quantity);
+        var updatedOrder = _orderRepository.Update(order);
+        transaction.Commit();
         
-        return _orderRepository.Update(order);
+        return updatedOrder;
     }
 
     public Order Complete(long id, CompleteOrder completeOrder)
     {
-        var order = FindById(id);
+        var order = _orderRepository.FindByIdTracked(id);
         
         if (completeOrder.User == null)
         {
@@ -72,7 +80,7 @@ public class OrderService
             throw new NoNullAllowedException($"Order cannot be completed without a Shipping Address!");
         }
 
-        order.User = completeOrder.User;
+        order.UserId = completeOrder.User.Id;
         order.ShippingAddress = completeOrder.ShippingAddress;
         order.Status = Status.Complete;
         
@@ -105,14 +113,7 @@ public class OrderService
 
     private Order FindById(long id)
     {
-        var order = _orderRepository.FindById(id);
-        
-        if (order == null)
-        {
-            throw new EntityNotFoundException($"Order with id {id} not found!");
-        }
-
-        return order;
+        return _orderRepository.FindById(id);
     }
     
 }

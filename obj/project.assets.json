@@ -902,19 +902,19 @@
     ]
   },
   "packageFolders": {
-    "/Users/lirjeta/.nuget/packages/": {}
+    "/Users/deniscitaku/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/lirjeta/Workspace/net-core-applications/PizzaDeliveryApp/PizzaDeliveryApp/PizzaDeliveryApp/PizzaDeliveryApp.csproj",
+      "projectUniqueName": "/Users/deniscitaku/Workspace/pizza-delivery-app/PizzaDeliveryApp.csproj",
       "projectName": "PizzaDeliveryApp",
-      "projectPath": "/Users/lirjeta/Workspace/net-core-applications/PizzaDeliveryApp/PizzaDeliveryApp/PizzaDeliveryApp/PizzaDeliveryApp.csproj",
-      "packagesPath": "/Users/lirjeta/.nuget/packages/",
-      "outputPath": "/Users/lirjeta/Workspace/net-core-applications/PizzaDeliveryApp/PizzaDeliveryApp/PizzaDeliveryApp/obj/",
+      "projectPath": "/Users/deniscitaku/Workspace/pizza-delivery-app/PizzaDeliveryApp.csproj",
+      "packagesPath": "/Users/deniscitaku/.nuget/packages/",
+      "outputPath": "/Users/deniscitaku/Workspace/pizza-delivery-app/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/lirjeta/.nuget/NuGet/NuGet.Config"
+        "/Users/deniscitaku/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
@@ -971,7 +971,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.202/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/Users/deniscitaku/.dotnet/sdk/6.0.202/RuntimeIdentifierGraph.json"
       }
     }
   }
